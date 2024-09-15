@@ -1,5 +1,3 @@
-// src/api.js
-
 export const authenticate = async () => {
   const response = await fetch("/authenticated", { credentials: "include" });
   return await response.json();
