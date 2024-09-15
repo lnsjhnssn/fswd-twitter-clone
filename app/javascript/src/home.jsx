@@ -1,15 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+// assets/javascripts/home.jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-import './home.scss';
-
-const Home = props => (
-  <h1>Home page react is working</h1>
-)
-
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Home />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.body.appendChild(document.createElement("div"));
+  ReactDOM.render(<App />, container);
+});
