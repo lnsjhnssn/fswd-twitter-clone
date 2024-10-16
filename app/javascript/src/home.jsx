@@ -1,56 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Layout from "./layout";
+import { signInUser, createUser } from "./utils/apiRequests"; // Import the functions from authApi.js
 
-// Login form component
-const LoginForm = () => (
-  <div className="log-in">
-    <form>
-      <div className="form-group">
-        <input type="text" className="username" placeholder="Username" />
-      </div>
-      <div className="form-group">
-        <input type="password" className="password" placeholder="Password" />
-      </div>
-      <button id="log-in-btn" className="login-btn">
-        Log in
-      </button>
-    </form>
-  </div>
-);
+const Home = () => {
+  // State for login form
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
-// Sign up form component
-const SignUpForm = () => (
-  <div className="sign-up">
-    <form>
-      <div className="new-to-t">
-        <p>
-          <strong>New to Twitter?</strong>
-          <span> Sign Up</span>
-        </p>
-      </div>
-      <div className="form-group">
-        <input type="text" className="username" placeholder="Username" />
-      </div>
-      <div className="form-group">
-        <input type="email" className="email" placeholder="Email" />
-      </div>
-      <div className="form-group">
-        <input type="password" className="password" placeholder="Password" />
-      </div>
-      <button id="sign-up-btn" className="sign-up-btn">
-        Sign up for Twitter
-      </button>
-    </form>
-  </div>
-);
+  // State for signup form
+  const [signupUsername, setSignupUsername] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
 
-const Home = () => (
-  <Layout>
-    <LoginForm /> {/* Added Login Form */}
-    <SignUpForm /> {/* Added Sign Up Form */}
-  </Layout>
-);
+  // Handle Login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInUser(loginUsername, loginPassword).then((res) => {
+      if (res.success) {
+        window.location.replace("/feed");
+      } else {
+        console.log("Login failed");
+      }
+    });
+  };
+
+  // Handle Sign Up
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    createUser(signupUsername, signupEmail, signupPassword).then((res) => {
+      if (res.success) {
+        window.location.replace("/feed");
+      } else {
+        console.log("Sign up failed");
+      }
+    });
+  };
+
+  return (
+    <Layout>
+      <h1>Home page</h1>
+
+      {/* Login Form */}
+      <div className="log-in">
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={loginUsername}
+            onChange={(e) => setLoginUsername(e.target.value)} // Separate state for login username
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)} // Separate state for login password
+          />
+          <button id="log-in-btn">Log in</button>
+        </form>
+      </div>
+
+      {/* Sign Up Form */}
+      <div className="sign-up">
+        <form onSubmit={handleSignUp}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={signupUsername}
+            onChange={(e) => setSignupUsername(e.target.value)} // Separate state for signup username
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={signupEmail}
+            onChange={(e) => setSignupEmail(e.target.value)} // Separate state for signup email
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={signupPassword}
+            onChange={(e) => setSignupPassword(e.target.value)} // Separate state for signup password
+          />
+          <button id="sign-up-btn">Sign up for Twitter</button>
+        </form>
+      </div>
+    </Layout>
+  );
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
