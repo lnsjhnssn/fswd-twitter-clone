@@ -1,0 +1,41 @@
+.tweet-wrapper {
+  border: 1px solid rgb(46, 64, 82);
+  border-bottom: none;
+  &:last-child {
+    border-bottom: 1px solid rgb(46, 64, 82);
+  }
+  padding: 1rem;
+}
+
+.btn-delete {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #ff6666;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  background-color: #e0245e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c51e4a;
+  }
+}

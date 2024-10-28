@@ -7,8 +7,9 @@ module Api
         render 'api/users/create'
       else
         render json: {
-          success: false
-        }
+          success: false,
+          errors: @user.errors.full_messages
+        }, status: :unprocessable_entity
       end
     end
 

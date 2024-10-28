@@ -1,24 +1,26 @@
 import React from "react";
+import "./layout.scss";
 
 const Layout = (props) => {
   return (
     <React.Fragment>
-      <nav>
+      {/* <nav>
         <div>
-          <a href="#">TwitterClone</a>
-          <div>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/feed">Feed</a>
-              </li>
-            </ul>
-          </div>
+          <h1>
+            <a href="/">TwitterClone</a>
+          </h1>
+
+          <ul>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/feed">Feed</a>
+            </li>
+          </ul>
         </div>
-      </nav>
-      <div>{props.children}</div>
+      </nav> */}
+      <div className="main-container">{props.children}</div>
       <footer>
         <div>
           <span>By LJR</span>
