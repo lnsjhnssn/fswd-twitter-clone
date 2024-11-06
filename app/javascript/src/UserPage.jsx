@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Layout from "./layout";
-import { getTweets, createTweet, deleteTweet } from "./utils/apiRequests";
+import { Link } from "react-router-dom";
+import { getUserTweets, deleteTweet } from "./utils/apiRequests";
 import "./main.scss";
-import Navbar from "./navbar";
-import UserPage from "./UserPage";
+import Logo from "./Logo";
 
-const TweetsList = ({ history }) => {
+const UserPage = ({ match }) => {
   const [tweets, setTweets] = useState([]);
-  const [newTweet, setNewTweet] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -20,36 +16,21 @@ const TweetsList = ({ history }) => {
       })
       .catch((error) => console.error("Error fetching current user:", error));
 
-    getTweets()
+    getUserTweets(match.params.username)
       .then((data) => {
         const sortedTweets = data.tweets.sort((a, b) => b.id - a.id);
         setTweets(sortedTweets);
       })
-      .catch((error) => console.error("Error fetching tweets:", error));
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createTweet(newTweet)
-      .then(() => {
-        getTweets().then((data) => {
-          setTweets(data.tweets);
-        });
-        setNewTweet("");
-      })
-      .catch((error) => console.error("Error posting tweet:", error));
-  };
-
-  const handleTweetChange = (e) => {
-    setNewTweet(e.target.value);
-  };
+      .catch((error) => console.error("Error fetching user tweets:", error));
+  }, [match.params.username]);
 
   const handleDelete = (tweetId) => {
     deleteTweet(tweetId)
       .then((response) => {
         if (response && response.success) {
-          getTweets().then((data) => {
-            setTweets(data.tweets);
+          getUserTweets(match.params.username).then((data) => {
+            const sortedTweets = data.tweets.sort((a, b) => b.id - a.id);
+            setTweets(sortedTweets);
           });
         } else {
           console.error("Delete response was not successful");
@@ -62,20 +43,11 @@ const TweetsList = ({ history }) => {
   };
 
   return (
-    <div className="feed-container">
-      <div className="form-create-tweet">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={newTweet}
-            onChange={handleTweetChange}
-            placeholder={`What's up, ${currentUser}?`}
-          />
-          <button className="btn-post" type="submit">
-            Post
-          </button>
-        </form>
-      </div>
+    <div>
+      <h2>
+        Posts by{" "}
+        {currentUser === match.params.username ? "me" : match.params.username}
+      </h2>
       <div className="posts-container">
         {tweets.map((tweet) => (
           <div className="tweet-post" key={tweet.id}>
@@ -108,23 +80,4 @@ const TweetsList = ({ history }) => {
   );
 };
 
-const App = () => {
-  return (
-    <Router>
-      <Layout>
-        <Navbar />
-        <Switch>
-          <Route path="/users/:username" component={UserPage} />
-          <Route path="/" render={(props) => <TweetsList {...props} />} />
-        </Switch>
-      </Layout>
-    </Router>
-  );
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement("div"))
-  );
-});
+export default UserPage;
