@@ -24,4 +24,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
   database: klotter_production
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
