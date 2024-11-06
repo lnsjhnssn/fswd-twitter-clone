@@ -78,4 +78,4 @@ group :production do
   gem 'pg', '~> 1.4.3'
 end
 
-gem 'pg'
+ gem 'pg', '~> 1.4.3'
