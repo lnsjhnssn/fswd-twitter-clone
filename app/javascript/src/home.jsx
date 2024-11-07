@@ -50,7 +50,7 @@ const Home = () => {
               like <strong>doodle</strong> in english
             </p>
             <p>
-              comme <strong>griffonage</strong> en français
+              ou <strong>griffonage</strong> en français
             </p>
           </div>
         </div>

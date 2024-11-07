@@ -5,7 +5,7 @@ import "./main.scss";
 const Layout = (props) => {
   return (
     <React.Fragment>
-      <div className="layout-container">
+      <div className="app-container">
         <div className="main-container">{props.children}</div>
         <Footer />
       </div>
