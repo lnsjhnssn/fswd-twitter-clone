@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getUserTweets, deleteTweet } from "./utils/apiRequests";
 import "./main.scss";
-import Logo from "./Logo";
 
 const UserPage = ({ match }) => {
   const [tweets, setTweets] = useState([]);

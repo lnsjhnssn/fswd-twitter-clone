@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import Layout from "./layout";
-import { getTweets, createTweet, deleteTweet } from "./utils/apiRequests";
-import "./main.scss";
 import Navbar from "./navbar";
 import UserPage from "./UserPage";
+import { getTweets, createTweet, deleteTweet } from "./utils/apiRequests";
+
+import "./main.scss";
 
 const TweetsList = ({ history }) => {
   const [tweets, setTweets] = useState([]);

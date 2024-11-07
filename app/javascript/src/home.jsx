@@ -1,96 +1,122 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+
 import Layout from "./layout";
-import { signInUser, createUser } from "./utils/apiRequests"; // Import the functions from authApi.js
 import Logo from "./Logo.jsx";
+import { signInUser, createUser } from "./utils/apiRequests";
+
 import "./main.scss";
 
 const Home = () => {
-  // State for login form
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  // State for signup form
   const [signupUsername, setSignupUsername] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
 
-  // Handle Login
+  const [showLogin, setShowLogin] = useState(false);
+
   const handleLogin = (e) => {
     e.preventDefault();
     signInUser(loginUsername, loginPassword).then((res) => {
       if (res.success) {
         window.location.replace("/feed");
       } else {
-        console.log("Login failed");
+        alert("Login failed. Please check your username and password.");
       }
     });
   };
 
-  // Handle Sign Up
   const handleSignUp = (e) => {
     e.preventDefault();
     createUser(signupUsername, signupEmail, signupPassword).then((res) => {
       if (res.success) {
         window.location.replace("/feed");
       } else {
-        console.log("Sign up failed");
+        alert("Sign up failed. Please try again.");
       }
     });
   };
 
   return (
     <Layout>
-      {/* Sign Up Form */}
       <div className="signup-page-container">
         <div>
           <Logo />
+          <div className="sub-title">
+            <p>
+              like <strong>doodle</strong> in english
+            </p>
+            <p>
+              comme <strong>griffonage</strong> en français
+            </p>
+          </div>
         </div>
 
-        <div className="sign-up">
-          <form onSubmit={handleSignUp}>
-            <h2>Create Account</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              value={signupUsername}
-              onChange={(e) => setSignupUsername(e.target.value)} // Separate state for signup username
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={signupEmail}
-              onChange={(e) => setSignupEmail(e.target.value)} // Separate state for signup email
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={signupPassword}
-              onChange={(e) => setSignupPassword(e.target.value)} // Separate state for signup password
-            />
-            <button id="sign-up-btn">Sign up for klotter</button>
-          </form>
-        </div>
-        {/* Login Form */}
-        <div className="log-in">
-          <form onSubmit={handleLogin}>
-            <h2>Log in</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              value={loginUsername}
-              onChange={(e) => setLoginUsername(e.target.value)} // Separate state for login username
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)} // Separate state for login password
-            />
-            <button id="log-in-btn">Log in</button>
-          </form>
-        </div>
+        {showLogin ? (
+          <div className="log-in">
+            <form onSubmit={handleLogin}>
+              <h2>Log in</h2>
+              <input
+                type="text"
+                placeholder="Username"
+                value={loginUsername}
+                onChange={(e) => setLoginUsername(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                required
+              />
+              <button id="log-in-btn">Log in</button>
+            </form>
+            <button
+              className="btn-change-form"
+              onClick={() => setShowLogin(false)}
+            >
+              <strong>Create an account</strong>
+            </button>
+          </div>
+        ) : (
+          <div className="sign-up">
+            <form onSubmit={handleSignUp}>
+              <h2>Create Account</h2>
+              <input
+                type="text"
+                placeholder="Username"
+                value={signupUsername}
+                onChange={(e) => setSignupUsername(e.target.value)}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={signupEmail}
+                onChange={(e) => setSignupEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)}
+                required
+              />
+              <button id="sign-up-btn">Sign up for klotter</button>
+            </form>
+            <button
+              className="btn-change-form"
+              onClick={() => setShowLogin(true)}
+            >
+              Already have an account? <strong>Log in</strong>
+            </button>
+          </div>
+        )}
       </div>
     </Layout>
   );

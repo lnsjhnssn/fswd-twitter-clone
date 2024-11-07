@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchForm from "./SearchForm";
-import "./main.scss";
-import SignOutButton from "./SignOutButton";
+
 import Logo from "./Logo.jsx";
+import SearchForm from "./SearchForm";
+import SignOutButton from "./SignOutButton";
+
+import "./main.scss";
 
 const Navbar = () => (
   <nav>
