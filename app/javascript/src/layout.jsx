@@ -5,8 +5,10 @@ import "./main.scss";
 const Layout = (props) => {
   return (
     <React.Fragment>
-      <div className="main-container">{props.children}</div>
-      <Footer />
+      <div className="layout-container">
+        <div className="main-container">{props.children}</div>
+        <Footer />
+      </div>
     </React.Fragment>
   );
 };

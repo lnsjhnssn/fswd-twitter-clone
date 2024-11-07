@@ -38,7 +38,7 @@ html {
 body {
   padding: 1rem 1rem 0.7rem;
   margin: 0;
-  height: 100vh;
+  // min-height: 100vh;
 }
 
 h1 {
@@ -413,3 +413,10 @@ footer {
 // .tweet-post:has(button) {
 //   background-color: var(--grey-hover);
 // }
+
+.layout-container {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // min-height: 100vh;
+}
