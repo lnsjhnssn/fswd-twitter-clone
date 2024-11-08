@@ -182,6 +182,10 @@ nav {
   padding: 1.2rem 0rem 0rem;
   margin-bottom: 5rem;
 
+  @media screen and (max-width: 520px) {
+    margin-bottom: 5rem;
+  }
+
   div {
     display: flex;
     align-items: center;
@@ -206,6 +210,32 @@ nav {
 
         &:last-child {
           justify-self: end;
+        }
+      }
+    }
+
+    @media screen and (max-width: 520px) {
+      ul {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        li {
+          &:first-child {
+            order: 1;
+            justify-self: start;
+          }
+
+          &:nth-child(2) {
+            order: 3;
+            justify-self: end;
+            grid-column: span 2;
+            width: 50%;
+          }
+
+          &:last-child {
+            order: 2;
+            justify-self: end;
+          }
         }
       }
     }
@@ -236,6 +266,10 @@ nav {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 140px;
+
+  @media screen and (max-width: 520px) {
+    width: 95px;
+  }
 }
 
 .search-icon {
