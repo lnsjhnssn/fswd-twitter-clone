@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Layout from "./layout";
-import Navbar from "./navbar";
-import UserPage from "./UserPage";
-import { getTweets, createTweet, deleteTweet } from "./utils/apiRequests";
+import Layout from "./Layout.jsx";
+import Navbar from "./Navbar.jsx";
+import UserPage from "./UserPage.jsx";
+import { getTweets, createTweet, deleteTweet } from "./utils/apiRequests.js";
 
 import "./main.scss";
 
