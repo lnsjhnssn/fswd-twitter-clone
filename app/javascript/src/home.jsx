@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-import Layout from "./layout";
+import Layout from "./Layout.jsx";
 import Logo from "./Logo.jsx";
-import { signInUser, createUser } from "./utils/apiRequests";
+import { signInUser, createUser } from "./utils/apiRequests.js";
 
 import "./main.scss";
 

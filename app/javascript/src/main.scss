@@ -186,11 +186,12 @@ nav {
     margin-bottom: 5rem;
   }
 
-  div {
+  .navbar-container {
+    position: relative;
     display: flex;
     align-items: center;
 
-    ul {
+    .navbar-list {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       width: 100%;
@@ -213,32 +214,19 @@ nav {
         }
       }
     }
+  }
 
-    @media screen and (max-width: 520px) {
-      ul {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-
-        li {
-          &:first-child {
-            order: 1;
-            justify-self: start;
-          }
-
-          &:nth-child(2) {
-            order: 3;
-            justify-self: end;
-            grid-column: span 2;
-            width: 50%;
-          }
-
-          &:last-child {
-            order: 2;
-            justify-self: end;
-          }
-        }
-      }
-    }
+  .dropdown-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 10;
   }
 
   .icon-button {
@@ -253,19 +241,42 @@ nav {
   .home-icon {
     color: var(--blue-light);
   }
+
+  .icon-dropdown {
+    color: var(--black);
+    font-size: 0.9rem;
+  }
+}
+
+/* Button Logut */
+
+.btn-signout {
+  padding: 6px 10px;
+  background-color: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--grey-hover);
+  }
 }
 
 /* Search Form */
 
-.search-form {
+.form-search {
   display: flex;
+  align-items: center;
 }
 
 .search-input {
   padding: 7px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 140px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 
   @media screen and (max-width: 520px) {
     width: 95px;
@@ -299,21 +310,6 @@ nav {
     &:focus {
       outline: none;
     }
-  }
-}
-
-/* Button Logut */
-
-.btn-logout {
-  padding: 8px 16px;
-  background-color: transparent;
-  color: var(--black);
-  border: 1px solid var(--black);
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--grey-hover);
   }
 }
 
