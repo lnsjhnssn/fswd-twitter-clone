@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "./Logo.jsx";
@@ -8,12 +8,6 @@ import SignOutButton from "./SignOutButton.jsx";
 import "./main.scss";
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
   return (
     <nav>
       <div className="navbar-container">
