@@ -1,29 +1,8 @@
-# Twitter Clone (Advanced with Mailer, Search, Photo Upload)
+KLOTTER
 
-Visit [Altcademy Classroom](https://www.altcademy.com/classroom/) for more instructions.
+like doodle in english
+ou griffonage en français
 
-1. Install GEMS
+# A Twitter Clone - Forked from Altcademy [Altcademy Classroom](https://www.altcademy.com)
 
-```
-bundle
-```
-
-2. Install NPM packages
-
-```
-yarn
-```
-
-3. Start rails server
-
-```
-rails s
-```
-
-Or use foreman if you have it installed, it will run rails server and webpack dev server
-
-```
-foreman start -f Procfile.dev
-```
-
-4. Go to "localhost:3000" on browser.
+Built with React and Ruby on Rails.
